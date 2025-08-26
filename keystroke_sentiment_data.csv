@@ -1,0 +1,16 @@
+import pandas as pd
+
+# Load the existing keystroke dataset
+keystroke_df = pd.read_csv('/Users/pratham/Desktop/Dissertation/enhanced_synthetic_fusion_fraud_data.csv')
+
+# Create session IDs to match transaction data
+num_rows = keystroke_df.shape[0]
+session_ids = [f"SID_{i:04}" for i in range(num_rows)]
+
+# Add to DataFrame
+keystroke_df.insert(0, 'session_id', session_ids)
+
+# Save updated file
+keystroke_df.to_csv('/Users/pratham/Desktop/Dissertation/enhanced_synthetic_fusion_fraud_data.csv', index=False)
+
+print("✅ session_id column added and file updated.")
